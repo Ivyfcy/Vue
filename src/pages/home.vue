@@ -3,7 +3,7 @@
         <span class="back"  @click="goBack">
             <i class="icon icon-back"></i>
             <home-swiper></home-swiper>
-            首页 {{my.pageSize}} 
+            <div>首页 {{my.pageSize}} </div>
         </span>
         <hello-world></hello-world>
     </div>

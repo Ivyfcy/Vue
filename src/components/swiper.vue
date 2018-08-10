@@ -48,9 +48,10 @@ export default {
 
 .wrapper
     overflow: hidden
-    width: 100%
+    margin 0 auto 
+    width: 50%
     height: 0
-    padding-bottom: 24.9%
+    padding-bottom:12.3% //宽高比始终是12.3
     
 .swiper-img
     width: 100%
