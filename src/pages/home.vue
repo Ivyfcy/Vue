@@ -2,10 +2,10 @@
     <div>
         <span class="back"  @click="goBack">
             <i class="icon icon-back"></i>
+            <home-swiper></home-swiper>
             首页 {{my.pageSize}} 
         </span>
         <hello-world></hello-world>
-        <home-swiper></home-swiper>
     </div>
 </template>
 <script>
