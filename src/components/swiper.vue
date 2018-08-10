@@ -19,8 +19,8 @@ export default {
         return {
             swiperOption: {
                 pagination: '.swiper-pagination',
-                loop: true,
-                autoplay: 3000
+                loop: true, // 循环轮播
+                autoplay: 3000 // 时间
             },
             swiperList: [
                 {
@@ -42,11 +42,11 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-// >>> 样式穿透
+// >>> 样式穿透，不受scoped的限制了
 .wrapper >>> .swiper-pagination-bullet-active
     background: #fff
 
-.wrapper
+.wrapper //在最外层套个div可以
     overflow: hidden
     margin 0 auto 
     width: 50%
