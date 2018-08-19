@@ -12,7 +12,7 @@
         <hello-world 
             v-for="(item,index) in list" 
             v-bind:content='item'
-            v-bind:key="index"
+            :key="index"
             v-bind:index="index"
             @delete="handledetele">
          </hello-world>
@@ -25,6 +25,8 @@ import helloWorld from '../components/HelloWorld'
 import HomeSwiper from '../components/swiper'
 import Axios from 'axios'
 export default {
+    // list列表渲染对数据操作下标不会改变页面的渲染
+    // 利用push pop shift unshift splice sort reverse方法来改变
     data() {
         return {
             my: {},
