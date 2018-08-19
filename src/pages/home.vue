@@ -5,7 +5,12 @@
             <home-swiper></home-swiper>
                 首页 {{my.pageSize}} 
         </span>
-        <div @click="changecolor" :class="{active:isactive}" v-if="show">{{message}}</div>
+        <div @click="changecolor" 
+        :class="{active:isactive}" 
+        v-if="show"
+        ref="a"
+        >{{message}}
+        </div>
         <div>{{ full}}</div>
         <input type="text" v-model="todoValue">
         <button @click="hand">提交{{conpulate}}</button>
@@ -16,6 +21,9 @@
             v-bind:index="index"
             @delete="handledetele">
          </hello-world>
+         <counter @numberchange="addnumber" ref="one"></counter>
+         <counter @numberchange="addnumber" ref="two"></counter>
+         <div>{{numbertall}}</div>
     </div>
 </template>
 <script>
@@ -23,10 +31,12 @@
 // 子组件通过$emit()事件向上一层触发事件，父组件在监听
 import helloWorld from '../components/HelloWorld'
 import HomeSwiper from '../components/swiper'
+import counter from '../components/counter'
 import Axios from 'axios'
 export default {
     // list数组列表渲染如果对数据下标进行操作改变数据但不会改变页面的渲染，但其实数据已经改变
-    // 利用push pop shift unshift splice sort reverse方法来改变，也可以通过改变数据的引用
+    // 1.利用push pop shift unshift splice sort reverse方法来改变，2.也可以通过改变数据的引用
+    // 3.
     data() {
         return {
             my: {},
@@ -36,7 +46,8 @@ export default {
             last: 'ivy',
             isactive: false,
             message: 'hello word',
-            show: false
+            show: false,
+            numbertall: 0
         }
     },
     // 监听，和计算属性一样有缓存机制，但是代码比较复杂，建议优选使用计算属性
@@ -61,7 +72,6 @@ export default {
                 let arr = value.split(' ')
                 this.first = arr[0]
                 this.last = arr[1]
-                console.log(99999, value)
             }
         }
     },
@@ -102,6 +112,8 @@ export default {
             this.show = true
             this.full = 'ttt 000'
             this.list.push(this.todoValue)
+            // set方法  没法使用识别vue
+            // Vue.set(this.list, 1, 5)
             this.todoValue = ''
         },
         handledetele(index) {
@@ -109,11 +121,18 @@ export default {
         },
         changecolor() {
             this.isactive = !this.isactive
+            // ref写在div等标签里，是通过this.$refs.name获取dom节点
+            console.log(this.$refs.a.innerHTML)
+        },
+        addnumber() {
+            // ref写在子组件里，通过this.$refs.name获取子组件的引用
+            this.numbertall = this.$refs.one.number + this.$refs.two.number
         }
     },
     components: {
         helloWorld,
-        HomeSwiper
+        HomeSwiper,
+        counter
     }
 }
 </script>
