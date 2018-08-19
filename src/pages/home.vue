@@ -25,8 +25,8 @@ import helloWorld from '../components/HelloWorld'
 import HomeSwiper from '../components/swiper'
 import Axios from 'axios'
 export default {
-    // list列表渲染对数据操作下标不会改变页面的渲染
-    // 利用push pop shift unshift splice sort reverse方法来改变
+    // list数组列表渲染如果对数据下标进行操作改变数据但不会改变页面的渲染，但其实数据已经改变
+    // 利用push pop shift unshift splice sort reverse方法来改变，也可以通过改变数据的引用
     data() {
         return {
             my: {},
