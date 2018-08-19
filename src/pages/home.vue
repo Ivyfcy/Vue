@@ -21,13 +21,15 @@
             v-bind:index="index"
             @delete="handledetele">
          </hello-world>
-         <counter @numberchange="addnumber" ref="one"></counter>
+         <div>计算</div>
+         <counter @numberchange="addnumber" ref="one" @click.native="numberclick"></counter>
          <counter @numberchange="addnumber" ref="two"></counter>
          <div>{{numbertall}}</div>
     </div>
 </template>
 <script>
-// 父组件通过 v-bind:content（:content）向子组件传值，子组件得从props接收
+// 父子组件数据传递单向流（子组件不能直接修改父组件传来的数据）
+// 父组件通过 v-bind:content（:content,属性形式）向子组件传值，子组件得从props接收
 // 子组件通过$emit()事件向上一层触发事件，父组件在监听
 import helloWorld from '../components/HelloWorld'
 import HomeSwiper from '../components/swiper'
@@ -124,9 +126,14 @@ export default {
             // ref写在div等标签里，是通过this.$refs.name获取dom节点
             console.log(this.$refs.a.innerHTML)
         },
-        addnumber() {
+        addnumber(step) {
             // ref写在子组件里，通过this.$refs.name获取子组件的引用
-            this.numbertall = this.$refs.one.number + this.$refs.two.number
+            // this.numbertall = this.$refs.one.number + this.$refs.two.number
+            this.numbertall += step
+        },
+        // 给组件绑定原生事件@.click.native
+        numberclick() {
+            console.log(7777)
         }
     },
     components: {

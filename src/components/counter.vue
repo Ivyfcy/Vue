@@ -13,8 +13,8 @@ export default {
     },
     methods: {
         handleclick() {
-            this.number++
-            this.$emit('numberchange')
+            this.number = this.number + 2
+            this.$emit('numberchange', 2)
         }
     }
 }

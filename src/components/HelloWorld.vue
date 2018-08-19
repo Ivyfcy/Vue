@@ -11,7 +11,12 @@ export default {
     props: {
         content: {
             type: String,
-            required: true
+            required: true, // 必传
+            // 自定义校验器
+            validator(value) {
+                return (value.length > 5)
+            }
+
         },
         index: {
             type: Number
